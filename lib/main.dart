@@ -10,10 +10,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
 
+import 'features/home/domain/entities/book_entity.dart';
 import 'features/splash/presentation/views/splash_view.dart';
 
-void main() {
+void main() async{
   setupServiceLocator();
   runApp(const BooklyApp());
   SystemChrome.setSystemUIOverlayStyle(
@@ -21,6 +23,8 @@ void main() {
       statusBarColor: Colors.transparent, // Change this to your desired color
     ),
   );
+  Hive.registerAdapter(BookEntityAdapter());
+  await  Hive.openBox(kFeaturedBox);
 }
 
 class BooklyApp extends StatelessWidget {
