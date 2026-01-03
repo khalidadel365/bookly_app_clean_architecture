@@ -1,7 +1,6 @@
 import 'package:bookly_app/constants.dart';
  import 'package:bookly_app/core/utilities/app_router.dart';
 import 'package:bookly_app/core/utilities/sevice_locator.dart';
-import 'package:bookly_app/features/home/data/repos/home_repo_imp.dart';
 import 'package:bookly_app/features/home/presentation/manager/featured_books_cubit/featured_books_cubit.dart';
 import 'package:bookly_app/features/home/presentation/manager/newest_books_cubit/newest_books_cubit.dart';
 import 'package:bookly_app/features/home/presentation/views/home_view.dart';
@@ -11,20 +10,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 
 import 'features/home/domain/entities/book_entity.dart';
 import 'features/splash/presentation/views/splash_view.dart';
 
 void main() async{
-  setupServiceLocator();
+  //setupServiceLocator();
+  await Hive.initFlutter();
+  Hive.registerAdapter(BookEntityAdapter());
+  await  Hive.openBox<BookEntity>(kFeaturedBox);
+  await  Hive.openBox<BookEntity>(kNewestBox);
   runApp(const BooklyApp());
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: Colors.transparent, // Change this to your desired color
     ),
   );
-  Hive.registerAdapter(BookEntityAdapter());
-  await  Hive.openBox(kFeaturedBox);
+
 }
 
 class BooklyApp extends StatelessWidget {
