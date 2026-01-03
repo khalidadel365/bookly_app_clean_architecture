@@ -7,11 +7,9 @@ abstract class Failure  {
 
 class ServerFailure extends Failure{
   ServerFailure(super.errorMessage);
-
   factory ServerFailure.fromDioException(DioException exception){
     switch(exception.type){
       case DioExceptionType.connectionTimeout:
-
         return ServerFailure('Connection timeout with API server');
       case DioExceptionType.sendTimeout:
         return ServerFailure('Send timeout with API server');
@@ -26,14 +24,7 @@ class ServerFailure extends Failure{
       case DioExceptionType.connectionError:
         return ServerFailure('There is Connection Error');
       case DioExceptionType.unknown:
-      if(exception.message!.contains('SocketException')){
         return ServerFailure('No Internet Connection');
-      }
-      else{
-        return ServerFailure('No Internet Connection');
-      }
-      default:
-        return ServerFailure('Unexpected Error, please try again');
       }
   }
   factory ServerFailure.fromResponse(int statusCode,dynamic response){
@@ -51,4 +42,5 @@ class ServerFailure extends Failure{
     }
   }
 }
+
 
