@@ -11,11 +11,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
 
+import 'bloc_observer.dart';
 import 'features/home/data/repos/home_repo_imp.dart';
 import 'features/home/domain/entities/book_entity.dart';
 
 void main() async {
   setupServiceLocator();
+  Bloc.observer = MyBlocObserver();
   await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
   await Hive.openBox<BookEntity>(kFeaturedBox);
