@@ -1,7 +1,7 @@
 import 'offer_list_price.dart';
 
 class Offer {
-  final int? finskyOfferType;
+  final num? finskyOfferType;
   final OfferListPrice? listPrice;
   final OfferListPrice? retailPrice;
 
@@ -12,7 +12,7 @@ class Offer {
   });
 
   factory Offer.fromMap(Map<String, dynamic> json) => Offer(
-    finskyOfferType: json["finskyOfferType"],
+    finskyOfferType: json["finskyOfferType"] as num?,
     listPrice: json["listPrice"] == null ? null : OfferListPrice.fromMap(json["listPrice"]),
     retailPrice: json["retailPrice"] == null ? null : OfferListPrice.fromMap(json["retailPrice"]),
   );

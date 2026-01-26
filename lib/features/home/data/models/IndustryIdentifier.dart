@@ -8,8 +8,8 @@ class IndustryIdentifier {
   });
 
   factory IndustryIdentifier.fromMap(Map<String, dynamic> json) => IndustryIdentifier(
-    type: json["type"],
-    identifier: json["identifier"],
+    type: json["type"]?.toString(),
+    identifier: json["identifier"]?.toString(),
   );
 
   Map<String, dynamic> toMap() => {

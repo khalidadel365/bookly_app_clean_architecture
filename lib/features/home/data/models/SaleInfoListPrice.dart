@@ -1,5 +1,5 @@
 class SaleInfoListPrice {
-  final double? amount;
+  final num? amount;
   final String? currencyCode;
 
   SaleInfoListPrice({
@@ -8,8 +8,8 @@ class SaleInfoListPrice {
   });
 
   factory SaleInfoListPrice.fromMap(Map<String, dynamic> json) => SaleInfoListPrice(
-    amount: json["amount"]?.toDouble(),
-    currencyCode: json["currencyCode"],
+    amount: json["amount"] as num?,
+    currencyCode: json["currencyCode"]?.toString(),
   );
 
   Map<String, dynamic> toMap() => {

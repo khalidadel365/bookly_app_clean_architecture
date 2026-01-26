@@ -25,7 +25,7 @@ void main() async {
   runApp(const BooklyApp());
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent, // Change this to your desired color
+      statusBarColor: Colors.transparent,
     ),
   );
 }

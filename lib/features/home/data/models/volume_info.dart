@@ -1,5 +1,4 @@
 import 'package:bookly_app/features/home/data/models/reading_modes.dart';
-
 import 'IndustryIdentifier.dart';
 import 'PanelizationSummary.dart';
 import 'image_links.dart';
@@ -12,7 +11,7 @@ class VolumeInfo {
   final String? description;
   final List<IndustryIdentifier>? industryIdentifiers;
   final ReadingModes? readingModes;
-  final int? pageCount;
+  final num? pageCount;
   final String? printType;
   final List<dynamic>? categories;
   final String? maturityRating;
@@ -24,8 +23,8 @@ class VolumeInfo {
   final String? previewLink;
   final String? infoLink;
   final String? canonicalVolumeLink;
-  final double? averageRating;
-  final int? ratingsCount;
+  final num? averageRating;
+  final num? ratingsCount;
 
   VolumeInfo({
     this.title,
@@ -52,39 +51,42 @@ class VolumeInfo {
   });
 
   factory VolumeInfo.fromMap(Map<String, dynamic> json) => VolumeInfo(
-    title: json["title"],
-    authors: json["authors"] == null ? [] : List<dynamic>.from(json["authors"]!.map((x) => x)),
-    publisher: json["publisher"],
-    publishedDate: json["publishedDate"] as String?,
-    description: json["description"],
-    industryIdentifiers: json["industryIdentifiers"] == null ? [] : List<IndustryIdentifier>.from(json["industryIdentifiers"]!.map((x) => IndustryIdentifier.fromMap(x))),
+    title: json["title"]?.toString(),
+    authors: json["authors"] is List ? List<dynamic>.from(json["authors"]) : [],
+    publisher: json["publisher"]?.toString(),
+    publishedDate: json["publishedDate"]?.toString(),
+    description: json["description"]?.toString(),
+    industryIdentifiers: json["industryIdentifiers"] is List
+        ? List<IndustryIdentifier>.from(json["industryIdentifiers"].map((x) => IndustryIdentifier.fromMap(x)))
+        : [],
     readingModes: json["readingModes"] == null ? null : ReadingModes.fromMap(json["readingModes"]),
-    pageCount: json["pageCount"],
-    printType: json["printType"],
-    categories: json["categories"] == null ? [] : List<dynamic>.from(json["categories"]!.map((x) => x)),
-    maturityRating: json["maturityRating"],
-    allowAnonLogging: json["allowAnonLogging"],
-    contentVersion: json["contentVersion"],
+    pageCount: json["pageCount"] as num?,
+    printType: json["printType"]?.toString(),
+    categories: json["categories"] is List ? List<dynamic>.from(json["categories"]) : [],
+    maturityRating: json["maturityRating"]?.toString(),
+    allowAnonLogging: json["allowAnonLogging"] as bool?,
+    contentVersion: json["contentVersion"]?.toString(),
     panelizationSummary: json["panelizationSummary"] == null ? null : PanelizationSummary.fromMap(json["panelizationSummary"]),
     imageLinks: json["imageLinks"] == null ? null : ImageLinks.fromMap(json["imageLinks"]),
-    language: json["language"],
-    previewLink: json["previewLink"],
-    infoLink: json["infoLink"],
-    canonicalVolumeLink: json["canonicalVolumeLink"],
-    averageRating: json["averageRating"],
-    ratingsCount: json["ratingsCount"],
+    language: json["language"]?.toString(),
+    previewLink: json["previewLink"]?.toString(),
+    infoLink: json["infoLink"]?.toString(),
+    canonicalVolumeLink: json["canonicalVolumeLink"]?.toString(),
+    averageRating: json["averageRating"] as num?,
+    ratingsCount: json["ratingsCount"] as num?,
   );
 
   Map<String, dynamic> toMap() => {
     "title": title,
-    "authors": authors == null ? [] : List<dynamic>.from(authors!.map((x) => x)),
+    "authors": authors,
     "publisher": publisher,
+    "publishedDate": publishedDate,
     "description": description,
-    "industryIdentifiers": industryIdentifiers == null ? [] : List<dynamic>.from(industryIdentifiers!.map((x) => x.toMap())),
+    "industryIdentifiers": industryIdentifiers?.map((x) => x.toMap()).toList(),
     "readingModes": readingModes?.toMap(),
     "pageCount": pageCount,
     "printType": printType,
-    "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
+    "categories": categories,
     "maturityRating": maturityRating,
     "allowAnonLogging": allowAnonLogging,
     "contentVersion": contentVersion,

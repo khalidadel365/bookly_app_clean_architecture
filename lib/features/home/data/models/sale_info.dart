@@ -21,13 +21,15 @@ class SaleInfo {
   });
 
   factory SaleInfo.fromMap(Map<String, dynamic> json) => SaleInfo(
-    country: json["country"],
-    saleability: json["saleability"],
-    isEbook: json["isEbook"],
+    country: json["country"]?.toString(),
+    saleability: json["saleability"]?.toString(),
+    isEbook: json["isEbook"] is bool ? json["isEbook"] : null,
     listPrice: json["listPrice"] == null ? null : SaleInfoListPrice.fromMap(json["listPrice"]),
     retailPrice: json["retailPrice"] == null ? null : SaleInfoListPrice.fromMap(json["retailPrice"]),
-    buyLink: json["buyLink"],
-    offers: json["offers"] == null ? [] : List<Offer>.from(json["offers"]!.map((x) => Offer.fromMap(x))),
+    buyLink: json["buyLink"]?.toString(),
+    offers: json["offers"] is List
+        ? List<Offer>.from(json["offers"].map((x) => Offer.fromMap(x)))
+        : [],
   );
 
   Map<String, dynamic> toMap() => {

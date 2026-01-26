@@ -1,5 +1,5 @@
 class OfferListPrice {
-  final int? amountInMicros;
+  final num? amountInMicros;
   final String? currencyCode;
 
   OfferListPrice({
@@ -8,8 +8,8 @@ class OfferListPrice {
   });
 
   factory OfferListPrice.fromMap(Map<String, dynamic> json) => OfferListPrice(
-    amountInMicros: json["amountInMicros"],
-    currencyCode: json["currencyCode"],
+    amountInMicros: json["amountInMicros"] as num?,
+    currencyCode: json["currencyCode"]?.toString(),
   );
 
   Map<String, dynamic> toMap() => {

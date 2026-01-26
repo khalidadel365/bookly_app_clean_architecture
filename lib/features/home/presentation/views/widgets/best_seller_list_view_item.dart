@@ -1,5 +1,6 @@
 import 'package:bookly_app/core/utilities/app_router.dart';
 import 'package:bookly_app/features/home/data/models/book_model.dart';
+import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_item.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/home_view_body.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ import 'book_rating.dart';
 
 class NewestListViewItem extends StatelessWidget {
   const NewestListViewItem({super.key, required this.book});
-  final BookModel book;
+  final BookEntity book;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -21,11 +22,11 @@ class NewestListViewItem extends StatelessWidget {
         GoRouter.of(context).push(AppRouter.kBookDetailsView);
       },
       child: SizedBox(
-        height: 125,
+        height: 130,
         width: 320,
         child: Row(
           children: [
-            CustomBookImage(book: book),
+            CustomBookImage(image: book.image!),
             const SizedBox(width: 30),
             Expanded(
               child: Column(
@@ -34,7 +35,7 @@ class NewestListViewItem extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: Text(
-                      book.volumeInfo!.title!,
+                      book.image!,
                       style: Styles.textStyle20.copyWith(
                           fontFamily: kGtSectraFine,
                           fontWeight: FontWeight.w600
@@ -47,7 +48,7 @@ class NewestListViewItem extends StatelessWidget {
                     height: 3,
                   ),
                   Text(
-                    book.volumeInfo!.authors![0],
+                    book.authorName!,
                     style: Styles.textStyle14.copyWith(color: Colors.grey[200]),
       
                   ),
@@ -60,8 +61,8 @@ class NewestListViewItem extends StatelessWidget {
                       ),
                       Spacer(),
                       BookRating(
-                        rating: book.volumeInfo!.averageRating?? 0,
-                        count: book.volumeInfo!.ratingsCount?? 0),
+                        rating: book.rating!,
+                       ),
                     ],
                   )
                 ],

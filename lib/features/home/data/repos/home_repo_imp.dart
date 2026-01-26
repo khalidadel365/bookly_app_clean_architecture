@@ -11,21 +11,23 @@ class HomeRepoImp extends HomeRepo{
   final HomeLocalDataSource homeLocalDataSource;
   HomeRepoImp({required this.homeRemoteDataSource, required this.homeLocalDataSource});
   @override
-  Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks() async{
+  @override
+  Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks() async {
     try {
-      //bshof fe 7aga f elcache wla la
       var booksListCached = homeLocalDataSource.fetchFeaturedBooks();
-      if(booksListCached .isNotEmpty){
+      if (booksListCached.isNotEmpty) {
         return right(booksListCached);
       }
+
       var books = await homeRemoteDataSource.fetchFeaturedBooks();
       return right(books);
     } catch (e) {
-      if(e is DioException){
+      print("Error in HomeRepoImp: ${e.toString()}");
+
+      if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       }
       return left(ServerFailure(e.toString()));
-
     }
   }
 

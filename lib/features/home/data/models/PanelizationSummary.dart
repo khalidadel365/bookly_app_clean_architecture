@@ -8,8 +8,8 @@ class PanelizationSummary {
   });
 
   factory PanelizationSummary.fromMap(Map<String, dynamic> json) => PanelizationSummary(
-    containsEpubBubbles: json["containsEpubBubbles"],
-    containsImageBubbles: json["containsImageBubbles"],
+    containsEpubBubbles: json["containsEpubBubbles"] is bool ? json["containsEpubBubbles"] : null,
+    containsImageBubbles: json["containsImageBubbles"] is bool ? json["containsImageBubbles"] : null,
   );
 
   Map<String, dynamic> toMap() => {

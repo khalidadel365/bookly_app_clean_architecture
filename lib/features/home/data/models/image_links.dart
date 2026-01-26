@@ -8,8 +8,8 @@ class ImageLinks {
   });
 
   factory ImageLinks.fromMap(Map<String, dynamic> json) => ImageLinks(
-    smallThumbnail: json["smallThumbnail"],
-    thumbnail: json["thumbnail"],
+    smallThumbnail: json["smallThumbnail"]?.toString(),
+    thumbnail: json["thumbnail"]?.toString(),
   );
 
   Map<String, dynamic> toMap() => {

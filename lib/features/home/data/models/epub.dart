@@ -6,7 +6,7 @@ class Epub {
   });
 
   factory Epub.fromMap(Map<String, dynamic> json) => Epub(
-    isAvailable: json["isAvailable"],
+    isAvailable: json["isAvailable"] is bool ? json["isAvailable"] : null,
   );
 
   Map<String, dynamic> toMap() => {

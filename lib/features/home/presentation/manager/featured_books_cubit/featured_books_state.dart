@@ -1,8 +1,6 @@
 
 import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 
-import '../../../../../core/models/book_model.dart';
-
 
 sealed class FeaturedBooksState {}
 

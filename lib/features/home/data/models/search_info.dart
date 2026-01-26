@@ -6,7 +6,7 @@ class SearchInfo {
   });
 
   factory SearchInfo.fromMap(Map<String, dynamic> json) => SearchInfo(
-    textSnippet: json["textSnippet"],
+    textSnippet: json["textSnippet"]?.toString(),
   );
 
   Map<String, dynamic> toMap() => {

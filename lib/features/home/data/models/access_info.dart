@@ -1,5 +1,4 @@
 import 'package:bookly_app/features/home/data/models/pdf.dart';
-
 import 'epub.dart';
 
 class AccessInfo {
@@ -28,16 +27,16 @@ class AccessInfo {
   });
 
   factory AccessInfo.fromMap(Map<String, dynamic> json) => AccessInfo(
-    country: json["country"],
-    viewability: json["viewability"],
-    embeddable: json["embeddable"],
-    publicDomain: json["publicDomain"],
-    textToSpeechPermission: json["textToSpeechPermission"],
+    country: json["country"]?.toString(),
+    viewability: json["viewability"]?.toString(),
+    embeddable: json["embeddable"] as bool?,
+    publicDomain: json["publicDomain"] as bool?,
+    textToSpeechPermission: json["textToSpeechPermission"]?.toString(),
     epub: json["epub"] == null ? null : Epub.fromMap(json["epub"]),
     pdf: json["pdf"] == null ? null : Pdf.fromMap(json["pdf"]),
-    webReaderLink: json["webReaderLink"],
-    accessViewStatus: json["accessViewStatus"],
-    quoteSharingAllowed: json["quoteSharingAllowed"],
+    webReaderLink: json["webReaderLink"]?.toString(),
+    accessViewStatus: json["accessViewStatus"]?.toString(),
+    quoteSharingAllowed: json["quoteSharingAllowed"] as bool?,
   );
 
   Map<String, dynamic> toMap() => {

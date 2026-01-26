@@ -8,8 +8,8 @@ class ReadingModes {
   });
 
   factory ReadingModes.fromMap(Map<String, dynamic> json) => ReadingModes(
-    text: json["text"],
-    image: json["image"],
+    text: json["text"] is bool ? json["text"] : null,
+    image: json["image"] is bool ? json["image"] : null,
   );
 
   Map<String, dynamic> toMap() => {

@@ -8,8 +8,8 @@ class Pdf {
   });
 
   factory Pdf.fromMap(Map<String, dynamic> json) => Pdf(
-    isAvailable: json["isAvailable"],
-    acsTokenLink: json["acsTokenLink"],
+    isAvailable: json["isAvailable"] is bool ? json["isAvailable"] : null,
+    acsTokenLink: json["acsTokenLink"]?.toString(),
   );
 
   Map<String, dynamic> toMap() => {
