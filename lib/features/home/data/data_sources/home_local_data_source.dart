@@ -1,3 +1,4 @@
+import 'package:bookly_app/core/utilities/api_service.dart';
 import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:hive/hive.dart';
 
